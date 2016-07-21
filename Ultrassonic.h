@@ -21,7 +21,7 @@ public:
     Ultrassonic(int trig, int echo);
 
     int getDistancia();
-    float getDistancia(int tipo);
+    float getDistancia(int unidade);
     float converter(float val, int de, int para);
 
 private:

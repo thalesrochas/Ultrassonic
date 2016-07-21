@@ -25,24 +25,31 @@ int Ultrassonic :: getDistancia() {
     return _dist;
 }
 
-float Ultrassonic :: getDistancia(int tipo) {
-    if (tipo == CENTIMETRO) {
-        return getDistancia();
+float Ultrassonic :: getDistancia(int unidade) {
+    if (unidade == CENTIMETRO) {
+    	digitalWrite(_trig, HIGH);
+	    delayMicroseconds(10);
+	    digitalWrite(_trig, LOW);
+
+	    _tempo = pulseIn(_echo, HIGH);
+	    _dist = _tempo / 29.4 / 2.0;
+
+	    return _dist;
     }
-    else if (tipo == POLEGADA) {
-        return getDistancia() / 2.54;
+    else if (unidade == POLEGADA) {
+        return getDistancia(CENTIMETRO) / 2.54;
     }
-    else if (tipo == PALMO) {
-        return getDistancia() / 22.86;
+    else if (unidade == PALMO) {
+        return getDistancia(CENTIMETRO) / 22.86;
     }
-    else if (tipo == PE) {
-        return getDistancia() / 30.48;
+    else if (unidade == PE) {
+        return getDistancia(CENTIMETRO) / 30.48;
     }
-    else if (tipo == JARDA) {
-        return getDistancia() / 91.44;
+    else if (unidade == JARDA) {
+        return getDistancia(CENTIMETRO) / 91.44;
     }
-    else if (tipo == METRO) {
-        return getDistancia() / 100.00;
+    else if (unidade == METRO) {
+        return getDistancia(CENTIMETRO) / 100.00;
     }
     else {
         return ERRO;
